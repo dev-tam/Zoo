@@ -1,8 +1,10 @@
 package net.torora.jtam.zoo
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat.startActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +45,13 @@ class MainActivity : AppCompatActivity() {
                 myView.tvName.text = animal.name!!
                 myView.tvDes.text = animal.des!!
                 myView.ivAnimalImage.setImageResource(animal.image!!)
+                myView.ivAnimalImage.setOnClickListener {
+                    val intent = Intent(context,AnimalInfo::class.java)
+                    intent.putExtra("name",animal.name!!)
+                    intent.putExtra("des",animal.des!!)
+                    intent.putExtra("image", animal.image!!)
+                    context!!.startActivity(intent)
+                }
                 return myView
             }else {
                 var inflator = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -50,9 +59,17 @@ class MainActivity : AppCompatActivity() {
                 myView.tvName.text = animal.name!!
                 myView.tvDes.text = animal.des!!
                 myView.ivAnimalImage.setImageResource(animal.image!!)
+                myView.ivAnimalImage.setOnClickListener {
+                    val intent = Intent(context,AnimalInfo::class.java)
+                    intent.putExtra("name",animal.name!!)
+                    intent.putExtra("des",animal.des!!)
+                    intent.putExtra("image", animal.image!!)
+                    context!!.startActivity(intent)
+                }
                 return myView
             }
         }
+
 
         override fun getItem(position: Int): Any {
             return listOfAnimals[position]
