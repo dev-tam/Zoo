@@ -30,7 +30,11 @@ class MainActivity : AppCompatActivity() {
         adapter = AnimalsAdapter(this,listOfAnimals)
         tvListAnimal.adapter=adapter
     }
-    class AnimalsAdapter:BaseAdapter{
+    fun delete(index:Int){
+        listOfAnimals.removeAt(index)
+        adapter!!.notifyDataSetChanged()
+    }
+    inner class AnimalsAdapter:BaseAdapter{
         var listOfAnimals = ArrayList<Animal>()
         var context:Context?=null
         constructor(context: Context, listOfAnimals: ArrayList<Animal>):super(){
@@ -46,11 +50,12 @@ class MainActivity : AppCompatActivity() {
                 myView.tvDes.text = animal.des!!
                 myView.ivAnimalImage.setImageResource(animal.image!!)
                 myView.ivAnimalImage.setOnClickListener {
-                    val intent = Intent(context,AnimalInfo::class.java)
-                    intent.putExtra("name",animal.name!!)
-                    intent.putExtra("des",animal.des!!)
-                    intent.putExtra("image", animal.image!!)
-                    context!!.startActivity(intent)
+                    delete(position)
+//                    val intent = Intent(context,AnimalInfo::class.java)
+//                    intent.putExtra("name",animal.name!!)
+//                    intent.putExtra("des",animal.des!!)
+//                    intent.putExtra("image", animal.image!!)
+//                    context!!.startActivity(intent)
                 }
                 return myView
             }else {
@@ -60,11 +65,12 @@ class MainActivity : AppCompatActivity() {
                 myView.tvDes.text = animal.des!!
                 myView.ivAnimalImage.setImageResource(animal.image!!)
                 myView.ivAnimalImage.setOnClickListener {
-                    val intent = Intent(context,AnimalInfo::class.java)
-                    intent.putExtra("name",animal.name!!)
-                    intent.putExtra("des",animal.des!!)
-                    intent.putExtra("image", animal.image!!)
-                    context!!.startActivity(intent)
+                    delete(position)
+//                    val intent = Intent(context,AnimalInfo::class.java)
+//                    intent.putExtra("name",animal.name!!)
+//                    intent.putExtra("des",animal.des!!)
+//                    intent.putExtra("image", animal.image!!)
+//                    context!!.startActivity(intent)
                 }
                 return myView
             }
